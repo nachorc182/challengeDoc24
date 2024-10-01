@@ -1,0 +1,81 @@
+<ng-include src="'../pages/partials/navbar.html'"></ng-include>
+
+<div class="container turnos" style="margin-top: 100px; text-align: center;">
+    <h2 style="font-size: 2rem; color: #333;">Turnos</h2>
+    
+    <div ng-show="mostrarFormulario">
+        <h2 style="font-size: 1.5rem; color: #007bff;">Sistema de Turnos de Doc24</h2>
+        <form ng-submit="solicitarTurno()" style="max-width: 600px; margin: auto;">
+            <div style="margin-bottom: 15px;">
+                <label for="especialidad" style="display: block; margin-bottom: 5px;">Especialidad:</label>
+                <select id="especialidad" ng-model="selectedEspecialidad" 
+                        ng-options="especialidad as especialidad.especialidad for especialidad in especialidades" 
+                        ng-change="seleccionarEspecialidad()" 
+                        style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    <option value="">Selecciona una especialidad</option>
+                </select>
+            </div>
+            <div ng-show="mostrarHorarios" style="margin-bottom: 15px;">
+                <label for="profesional" style="display: block; margin-bottom: 5px;">Profesional:</label>
+                <select id="profesional" ng-model="selectedProfesional" 
+                        ng-options="profesional as profesional.nombre for profesional in profesionales" 
+                        ng-disabled="!selectedEspecialidad" 
+                        style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                    <option value="">Selecciona un profesional</option>
+                </select>
+            </div>
+            <div ng-if="mostrarHorarios && selectedProfesional">
+                <label for="horario" style="display: block; margin-bottom: 5px;">Horario:</label>
+                <div ng-repeat="horario in selectedProfesional.horarios">
+                    <input type="checkbox" id="{{horario.dia}}" 
+                           ng-model="selectedHorarios[horario.dia]" 
+                           ng-change="seleccionarHorario(horario)" 
+                           style="margin-right: 5px;">
+                    <label for="{{horario.dia}}">{{horario.dia}} - {{horario.horario}}</label>
+                </div>
+            </div>
+            <div ng-if="mostrarCampos">
+                <div style="margin-bottom: 15px;">
+                    <label for="nombre" style="display: block; margin-bottom: 5px;">Nombre:</label>
+                    <input type="text" id="nombre" ng-model="nombre" 
+                           ng-disabled="!selectedHorarios" required 
+                           style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="apellido" style="display: block; margin-bottom: 5px;">Apellido:</label>
+                    <input type="text" id="apellido" ng-model="apellido" 
+                           ng-disabled="!selectedHorarios" required 
+                           style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="direccion" style="display: block; margin-bottom: 5px;">Dirección:</label>
+                    <input type="text" id="direccion" ng-model="direccion" 
+                           ng-disabled="!selectedHorarios" required 
+                           style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="telefono" style="display: block; margin-bottom: 5px;">Teléfono:</label>
+                    <input type="text" id="telefono" ng-model="telefono" 
+                           ng-disabled="!selectedHorarios" required 
+                           style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="comentario" style="display: block; margin-bottom: 5px;">Comentario (opcional):</label>
+                    <textarea id="comentario" ng-model="comentario" 
+                              ng-disabled="!selectedHorarios" 
+                              style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+                </div>
+            </div>
+            <button type="submit" ng-disabled="!selectedHorarios || formulario.$invalid" 
+                    style="padding: 10px 15px; border: none; border-radius: 5px; background-color: #007bff; color: white; cursor: pointer;">
+                Solicitar Turno
+            </button>
+        </form>
+    </div>
+
+    <div ng-show="!mostrarFormulario" class="custom-alert">
+        <p style="margin: 100px; font-size: 1.2rem; color: #333;">{{resultado.mensaje}}</p>
+    </div>
+</div>
+
+<ng-include src="'../pages/partials/footer.html'"></ng-include>

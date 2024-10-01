@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "nombre": "Carlos Díaz",
+        "especialidad": 1,
+        "horarios": [
+            {
+                "dia": "Lunes",
+                "horario": "09:00 - 10:00"
+            },
+            {
+                "dia": "Miércoles",
+                "horario": "13:00 - 14:00"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Ana Torres",
+        "especialidad": 2,
+        "horarios": [
+            {
+                "dia": "Martes",
+                "horario": "16:00 - 17:00"
+            },
+            {
+                "dia": "Jueves",
+                "horario": "11:00 - 12:00"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "nombre": "Miguel Herrera",
+        "especialidad": 1,
+        "horarios": [
+            {
+                "dia": "Lunes",
+                "horario": "08:00 - 09:00"
+            },
+            {
+                "dia": "Viernes",
+                "horario": "14:00 - 15:00"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "nombre": "Sofía López",
+        "especialidad": 2,
+        "horarios": [
+            {
+                "dia": "Miércoles",
+                "horario": "10:00 - 11:00"
+            },
+            {
+                "dia": "Viernes",
+                "horario": "12:00 - 13:00"
+            }
+        ]
+    }
+]
